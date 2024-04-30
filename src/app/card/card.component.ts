@@ -13,3 +13,4 @@ export class CardComponent {
   person:any;
 
 }
+

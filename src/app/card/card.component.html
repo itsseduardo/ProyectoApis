@@ -1,9 +1,14 @@
 <div class="card" style="width: 18rem;">
-    <div class="card-body">
-  
-      <h5 class="titulo_card">{{ person.name }}</h5>
-       <img src="{{person.image}}" alt="">
-       <h5 class="subtitulo_card">{{ person.gender }}</h5>
-       
-    </div>
+  <div class="card-body">
+    <div class="attribute-container">  <h5 class="titulo_card">{{ person.name }}</h5>
+      <h5 class="subtitulo_card">{{ person.gender }}</h5>
+      <img src="{{person.image}}" alt="">
+      <h5 class="estado_card">{{ person.status }}</h5>
+    </div>
+    
+    <div class="button-container">
+      <button class="btn btn-primary edit-button">Editar</button>
+      <button class="btn btn-danger delete-button">Eliminar</button>
+    </div>
   </div>
+</div>
