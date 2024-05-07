@@ -9,7 +9,7 @@ const URL = "https://rickandmortyapi.com/api/character"
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-getAllCharacters(){
+getCharacters(){
   return this.http.get(URL);
   
 }

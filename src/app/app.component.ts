@@ -1,47 +1,37 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CardComponent } from './card/card.component';
-import { NgForOf } from '@angular/common';
-import { countReset } from 'console';
+import { CommonModule, NgForOf } from '@angular/common';
+import { countReset, info } from 'console';
 import { ApiService } from './service/api.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,CardComponent,NgForOf],
+  imports: [CommonModule, RouterOutlet, CardComponent, NgForOf, ReactiveFormsModule],
+  
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ProyectoApis';
-  people = [
-    {
-    name: "Maria",
-    country: "Colombia",
-    },
-    {
-    name: "Alonso",
-    country: "Perú"
-    },
-    {
-    name: "Andres",
-    country: "Ecuador"
-    },
-    {
-    name: "Carlos",
-    country: "Panama"
-    },
-    {
-    name: "Beto",
-    country: "Argentina"
-    }
-] 
-constructor(private api:ApiService){ }
+
+  constructor(private apiService: ApiService){}
+  
+  info: any;
+  
+  name = new FormControl('')
+  image = new FormControl('')
+  email = new FormControl('')
+  password = new FormControl('')
+
+
 ngOnInit(){
-  this.api.getAllCharacters().subscribe((ans:any)=>{
-    this.people=ans.results
-    console.log(ans);
-  }) 
-}
+  this.apiService.getCharacters().subscribe((data:any)=>{
+    this.info = data.results;
+  });
 }
 
+
+
+}
