@@ -6,9 +6,9 @@
       <h5 class="estado_card">{{ person.status }}</h5>
     </div>
     
-    <div class="button-container">
-      <button class="btn btn-primary edit-button">Editar</button>
-      <button class="btn btn-danger delete-button">Eliminar</button>
+    <div class="button-container" fxLayout="row" fxLayoutAlign="space-between">
+      <button class="btn btn-primary edit-button" (click)="onEditClick()">Editar</button>
+      <button class="btn btn-danger delete-button" (click)="onDeleteClick()">Eliminar</button>
     </div>
   </div>
 </div>

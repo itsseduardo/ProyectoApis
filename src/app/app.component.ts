@@ -15,6 +15,9 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private apiService: ApiService){}
   
@@ -24,6 +27,17 @@ export class AppComponent {
   image = new FormControl('')
   email = new FormControl('')
   password = new FormControl('')
+
+  saveChanges() {
+    console.log('Saving changes:', this.name, this.image, this.email, this.password); 
+  
+const newCharacter= {
+  "name": this.name.value,
+  "email": this.email.value,
+  "password": this.password.value,
+  "avatar": "https://picsum.photos/800",
+}
+  }
 
 
 ngOnInit(){

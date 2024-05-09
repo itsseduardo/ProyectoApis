@@ -1,12 +1,31 @@
 <h1>Para Actualizar</h1>
+
+<div>
+    <div class="form-label">
+    <div class="form-group"> 
 <label for="name">Name:</label>
 <input id="name" type="text" [formControl]="name">
 
-<label for="name">image</label>
+<label for="name">Image</label>
 <input id="name" type="text" [formControl]="image">
 
-<label for="name">Name:</label>
+<label for="name">Email:</label>
 <input id="name" type="text" [formControl]="email">
 
-<label for="name">Name:</label>
+<label for="name">Password:</label>
 <input id="name" type="text" [formControl]="password">
+
+<button (click)="saveChanges()">Guardar</button>    
+
+
+<div>
+
+    
+<div class="form-container">
+    <div class="container"*ngFor="let person of info">
+     <div class="card">
+      <app-card [person]="person"></app-card>
+    </div>
+     
+
+    
