@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Work+Sans:wght@100;300;400;600;800&display=swap');
+*{
+   
+    font-family: 'Work Sans';
+   
+}
+
 body {
-  background-image: url('https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2017/07/28/15012578720825.jpg');
+  background-image: url('https://img.freepik.com/fotos-premium/tienda-ropa-moderna-luces-neon-cyber-monday-generado-ia_664580-606.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -10,5 +17,6 @@ img {
   display: block;
   margin: 0 auto;
 }
+
 
   

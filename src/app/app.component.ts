@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CardComponent } from './card/card.component';
-import { CommonModule, NgForOf } from '@angular/common';
+import { CommonModule, NgForOf, NgIf } from '@angular/common';
 import { countReset, info } from 'console';
 import { ApiService } from './service/api.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -9,43 +9,43 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, CardComponent, NgForOf, ReactiveFormsModule],
-  
+  imports: [RouterOutlet, CardComponent, NgForOf, NgIf, ReactiveFormsModule,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
+
 })
-export class AppComponent {
-  title(title: any) {
-    throw new Error('Method not implemented.');
+
+export class AppComponent implements OnInit {
+  apiUrl = 'http://localhost:3000/products';
+  products: any[] = [];
+  tittle = 'ProyectoApis';
+  product: any;
+
+  price = new FormControl('');
+  description = new FormControl('');
+  title = new FormControl('');
+  categoryId = new FormControl('');
+  images = new FormControl('');
+
+  constructor(private apiservice: ApiService) { }
+
+  ngOnInit(): void {
+    this.apiservice.getAllProducts().subscribe((data: any[]) => {
+      this.products = data;
+    });
   }
 
-  constructor(private apiService: ApiService){}
-  
-  info: any;
-  
-  name = new FormControl('')
-  image = new FormControl('')
-  email = new FormControl('')
-  password = new FormControl('')
-
-  saveChanges() {
-    console.log('Saving changes:', this.name, this.image, this.email, this.password); 
-  
-const newCharacter= {
-  "name": this.name.value,
-  "email": this.email.value,
-  "password": this.password.value,
-  "avatar": "https://picsum.photos/800",
-}
+  onSummit(){
+    const NewProduct = {
+      title: this.title.value,
+      price: this.price.value,
+      description: this.description.value,
+      images: ['https://placeimg.com/640/480/any'],
+      categoryId: 1
+    }
+    this.apiservice.createProduct(NewProduct).subscribe((data: any) => {
+      console.log(data);
+      this.product.push(data);
+    })
   }
-
-
-ngOnInit(){
-  this.apiService.getCharacters().subscribe((data:any)=>{
-    this.info = data.results;
-  });
-}
-
-
-
 }

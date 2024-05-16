@@ -11,19 +11,21 @@ import { ApiService } from '../service/api.service';
 export class CardComponent {
   constructor(private readonly  apiService:ApiService){}
   @Input()
-  person:any;
+  Product:any;
   ApiService: any;
   
+  ngOnInit(){console.log(this.Product)}
+
   onDeleteClick() {
-    console.log('Delete button clicked for person:', this.person);
+    console.log('Delete button clicked for product:', this.Product);
 
     
-    this.apiService.deletePerson(this.person.id)
+    this.apiService.deleteP(this.Product.id)
       .subscribe((response: any) => {
-        console.log('Person deleted successfully:', response);
+        console.log('Articulo deleted successfully:', response);
         
       }, (error: any) => {
-        console.error('Error deleting person:', error);
+        console.error('Error deleting articulo:', error);
         
       });
   }

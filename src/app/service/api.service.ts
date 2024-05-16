@@ -1,24 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
-const URL = "https://rickandmortyapi.com/api/character"
+const URL= "https://api.escuelajs.co/api/v1/products"
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  deletePerson(id: number) {
+  
+  constructor(private http: HttpClient) { }
+
+  deleteP(id:number) {
     return this.http.delete(`https://api.escuelajs.co/api/v1/products/${id}`)
   }
-
-  constructor(private http: HttpClient) { }
-getCharacters(){
-
-  return this.http.get(URL);
   
-}
-createCharacter(newCharacter: any){
-  return this.http.post("https://api.escuelajs.co/api/v1/users", newCharacter)
-}
+  getAllProducts(): Observable<any> {
+    return this.http.get(URL);
+  }
 
+  createProduct(products: any) {
+    return this.http.post(URL, products);
+  }
 }

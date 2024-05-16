@@ -1,31 +1,25 @@
-<h1>Para Actualizar</h1>
-
-<div>
-    <div class="form-label">
-    <div class="form-group"> 
-<label for="name">Name:</label>
-<input id="name" type="text" [formControl]="name">
-
-<label for="name">Image</label>
-<input id="name" type="text" [formControl]="image">
-
-<label for="name">Email:</label>
-<input id="name" type="text" [formControl]="email">
-
-<label for="name">Password:</label>
-<input id="name" type="text" [formControl]="password">
-
-<button (click)="saveChanges()">Guardar</button>    
-
-
-<div>
-
-    
-<div class="form-container">
-    <div class="container"*ngFor="let person of info">
-     <div class="card">
-      <app-card [person]="person"></app-card>
+<div class="titulo">
+  <h5>PRODUCTOS</h5>
+</div>
+<div class="forms">
+  <label for="name">Nombre:
+    <input class="border name-input" type="text" name="" id="name" [formControl]="title">
+  </label>
+  <label for="name">Precio:
+    <input class="border price-input" type="text" name="" id="price" [formControl]="price">
+  </label>
+  <label for="name">Descripción:
+    <input class="border description-input" id="description" [formControl]="description">
+  </label>
+  <div class="button-container" fxLayout="row" fxLayoutAlign="space-between">
+    <button class="btt-agregar" (click)="onSummit()">Nuevo Producto</button>
+    <p></p>
+  </div>
+</div>
+<div class="container" *ngFor="let product of products">
+  <ng-container *ngIf="product.id">
+    <div class="card">
+      <app-card [Product]="product"></app-card>
     </div>
-     
-
-    
+  </ng-container>
+</div>
