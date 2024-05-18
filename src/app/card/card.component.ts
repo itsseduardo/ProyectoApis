@@ -31,6 +31,8 @@ export class CardComponent {
   }
 
   onEditClick() {
+    console.log('Edit button clicked for product:', this.Product);
+    
     
   }
 }
