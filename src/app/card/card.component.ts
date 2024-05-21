@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../service/api.service';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
@@ -13,6 +14,12 @@ export class CardComponent {
   @Input()
   Product:any;
   ApiService: any;
+
+
+    title = new FormControl('', Validators.required);
+    price = new FormControl('', Validators.required);
+    description = new FormControl('', Validators.required);
+  
   
   ngOnInit(){console.log(this.Product)}
 
@@ -30,10 +37,39 @@ export class CardComponent {
       });
   }
 
-  onEditClick() {
-    console.log('Edit button clicked for product:', this.Product);
+  openEditModal() {
     
+     this.title.setValue("hola")
+      
     
+    const modal = document.getElementById('editModal');
+    if (modal) {
+      modal.style.display = 'block';
+    }
   }
+
+  closeEditModal() {
+    const modal = document.getElementById('editModal');
+    if (modal) {
+      modal.style.display = 'none';
+    }
+  }
+
+ /* saveChanges() {
+    const updatedProduct = {
+      ...this.Product,
+      ...this.editForm.value
+    }; 
+    
+
+    this.apiService.updateProduct(this.Product.id, updatedProduct).subscribe(response => {
+      console.log('Producto actualizado:', response);
+      Object.assign(this.Product, updatedProduct);
+      this.closeEditModal();
+    }, error => {
+      console.error('Error al actualizar el producto:', error);
+    });
+  }
+ */
 }
 

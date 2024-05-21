@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   apiUrl = 'http://localhost:3000/products';
   products: any[] = [];
   tittle = 'ProyectoApis';
-  product: any;
+  product: any = [];
 
   price = new FormControl('');
   description = new FormControl('');
@@ -31,6 +31,41 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiservice.getAllProducts().subscribe((data: any[]) => {
+      data.map((item: any) => {
+      let imageStringify = JSON.stringify(item.images); // convertimos el array de imagenes a string
+        
+        
+        let imageNoGarbage = imageStringify
+        
+        
+        .substring(2, imageStringify.length - 2)
+        
+        
+        .replaceAll('\\', ' ')
+        
+        
+        .replaceAll('""', '"')
+        
+        
+        .replaceAll('" "', '"')
+        
+        
+        .replaceAll(' ', '');
+        
+        
+        try {
+        
+        
+        item.images = JSON.parse(imageNoGarbage);
+        
+        
+        item.imagesActual = item.images[0];
+        
+        
+        } catch (e) {}
+        
+        
+        });
       this.products = data;
     });
   }
@@ -40,8 +75,8 @@ export class AppComponent implements OnInit {
       title: this.title.value,
       price: this.price.value,
       description: this.description.value,
-      images: ['https://placeimg.com/640/480/any'],
-      categoryId: 1
+      images: [this.images.value],
+      categoryId: 4
     }
     this.apiservice.createProduct(NewProduct).subscribe((data: any) => {
       console.log(data);

@@ -7,8 +7,39 @@
     </div>
     
     <div class="button-container" fxLayout="row" fxLayoutAlign="space-between">
-      <button class="btn btn-primary edit-button" (click)="onEditClick()">Editar</button>
+      <button class="boton edit-button" (click)="openEditModal()">Editar</button>
       <button class="btn btn-danger delete-button" (click)="onDeleteClick()">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<div id="editModal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Editar Producto</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeEditModal()"></button>
+      </div>
+      <div class="modal-body">
+       
+          <div>
+            <label for="title">Título:</label>
+            <input type="text" id="title" [formControl]="title" class="form-control">
+          </div>
+          <div>
+            <label for="price">Precio:</label>
+            <input type="number" id="price" [formControl]="price" class="form-control">
+          </div>
+          <div>
+            <label for="description">Descripción:</label>
+            <input type="text" id="description" [formControl]="description" class="form-control">
+          </div>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cancelar</button>
+       
+      </div>
     </div>
   </div>
 </div>
