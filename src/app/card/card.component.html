@@ -34,11 +34,15 @@
             <label for="description">Descripción:</label>
             <input type="text" id="description" [formControl]="description" class="form-control">
           </div>
+          <div>
+            <label for="images">Imagen</label>
+            <input type="text" id="images" [formControl]="images" class="form-control">
+          </div>
        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="closeEditModal()">Cancelar</button>
-       
+        <button type="button" class="btn btn-primary" (click)="saveChanges()">Guardar Cambios</button> 
       </div>
     </div>
   </div>

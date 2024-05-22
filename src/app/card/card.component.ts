@@ -19,6 +19,8 @@ export class CardComponent {
     title = new FormControl('', Validators.required);
     price = new FormControl('', Validators.required);
     description = new FormControl('', Validators.required);
+    images = new FormControl('', Validators.required);
+
   
   
   ngOnInit(){console.log(this.Product)}
@@ -39,7 +41,7 @@ export class CardComponent {
 
   openEditModal() {
     
-     this.title.setValue("hola")
+     this.title.setValue("")
       
     
     const modal = document.getElementById('editModal');
@@ -55,10 +57,14 @@ export class CardComponent {
     }
   }
 
- /* saveChanges() {
+ saveChanges() {
     const updatedProduct = {
-      ...this.Product,
-      ...this.editForm.value
+      title:this.Product.title.value,
+      price:this.Product.price.value,
+      images: [this.images.value],
+      description:this.description.value,
+      
+      
     }; 
     
 
@@ -70,6 +76,6 @@ export class CardComponent {
       console.error('Error al actualizar el producto:', error);
     });
   }
- */
+ 
 }
 
