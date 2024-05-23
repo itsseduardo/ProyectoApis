@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
@@ -14,6 +15,7 @@ export class CardComponent {
   @Input()
   Product:any;
   ApiService: any;
+  modal=false
 
 
     title = new FormControl('', Validators.required);
@@ -23,7 +25,13 @@ export class CardComponent {
 
   
   
-  ngOnInit(){console.log(this.Product)}
+  ngOnInit(){
+    this.title.setValue(this.Product.title)
+    this.price.setValue(this.Product.price)
+    this.description.setValue(this.Product.description)
+    this.images.setValue(this.Product.images)
+
+    console.log(this.Product)}
 
   onDeleteClick() {
     console.log('Delete button clicked for product:', this.Product);
@@ -40,32 +48,24 @@ export class CardComponent {
   }
 
   openEditModal() {
-    
-     this.title.setValue("")
       
     
-    const modal = document.getElementById('editModal');
-    if (modal) {
-      modal.style.display = 'block';
-    }
+    this.modal=true
   }
 
   closeEditModal() {
-    const modal = document.getElementById('editModal');
-    if (modal) {
-      modal.style.display = 'none';
-    }
+    this.modal=false
   }
 
  saveChanges() {
     const updatedProduct = {
-      title:this.Product.title.value,
-      price:this.Product.price.value,
+      title:this.title.value,
+      price:this.price.value,
       images: [this.images.value],
       description:this.description.value,
       
       
-    }; 
+    }; console.log(updatedProduct)
     
 
     this.apiService.updateProduct(this.Product.id, updatedProduct).subscribe(response => {
