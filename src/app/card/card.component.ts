@@ -59,6 +59,7 @@ export class CardComponent {
 
  saveChanges() {
     const updatedProduct = {
+      id: this.Product.id,
       title:this.title.value,
       price:this.price.value,
       images: [this.images.value],
@@ -68,7 +69,7 @@ export class CardComponent {
     }; console.log(updatedProduct)
     
 
-    this.apiService.updateProduct(this.Product.id, updatedProduct).subscribe(response => {
+    this.apiService.updateProduct(updatedProduct).subscribe(response => {
       console.log('Producto actualizado:', response);
       Object.assign(this.Product, updatedProduct);
       this.closeEditModal();

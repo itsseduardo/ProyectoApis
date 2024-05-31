@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const URL = "https://api.escuelajs.co/api/v1/products"
+/* const URL = "https://api.escuelajs.co/api/v1/products"*/
+const URL = "http://localhost:3000/products"
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class ApiService {
     return this.http.post(URL, products);
   }
 
-  updateProduct(id: number, product: any) {
-    return this.http.put(`${URL}/${id}`, product);
+  updateProduct(product: any): Observable<any> {
+    return this.http.put(`${URL}/products`, product);
   }
+  
 }
